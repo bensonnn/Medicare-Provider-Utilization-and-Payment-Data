@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140422230836) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "locations", force: true do |t|
     t.string   "street1"
     t.string   "street2"
@@ -25,7 +28,7 @@ ActiveRecord::Schema.define(version: 20140422230836) do
     t.datetime "updated_at"
   end
 
-  add_index "locations", ["provider_id"], name: "index_locations_on_provider_id"
+  add_index "locations", ["provider_id"], name: "index_locations_on_provider_id", using: :btree
 
   create_table "providers", force: true do |t|
     t.integer  "npi",           null: false
@@ -35,7 +38,7 @@ ActiveRecord::Schema.define(version: 20140422230836) do
     t.datetime "updated_at"
   end
 
-  add_index "providers", ["npi"], name: "index_providers_on_npi"
+  add_index "providers", ["npi"], name: "index_providers_on_npi", using: :btree
 
   create_table "services", force: true do |t|
     t.integer  "hcpcs_code"
@@ -54,6 +57,6 @@ ActiveRecord::Schema.define(version: 20140422230836) do
     t.datetime "updated_at"
   end
 
-  add_index "services", ["provider_id"], name: "index_services_on_provider_id"
+  add_index "services", ["provider_id"], name: "index_services_on_provider_id", using: :btree
 
 end
