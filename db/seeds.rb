@@ -4,14 +4,16 @@ path = Rails.root.join('db', 'data.txt')
 
 ActiveRecord::Base.transaction do
 
+Conn = ActiveRecord::Base.connection
+
 CSV.foreach(File.open(path), {headers: true, col_sep: "\t"}) do |row| 
 	
 
-	provider = Provider.find_or_create_by(npi: row["npi"], 
+	provider = Provider.create(npi: row["npi"], 
 	                last_org_name: row["nppes_provider_last_org_name"],
 	                first_name: row["nppes_provider_first_name"])
 
-	Location.find_or_create_by(street1: row["nppes_provider_street1"],
+	Location.create(street1: row["nppes_provider_street1"],
 	                street2: row["nppes_provider_street2"],
 	                city: row["nppes_provider_city"],
 	                zip: row["nppes_provider_zip"],
