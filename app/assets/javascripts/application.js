@@ -19,10 +19,8 @@
 
 $(function() {
 
-
-
-var width = 1140,
-    height = 600;
+var width = 960,
+    height = 540;
 
     var path = d3.geo.path();
 
@@ -40,14 +38,13 @@ var width = 1140,
       .selectAll("path")
       .data(topojson.feature(us, us.objects.zip_codes_for_the_usa).features)
       .enter().append("path")
-      .attr("class", "zip")
-      .style("fill", "none")
+      .style("fill", "#C1F78F")
       .style("stroke", "#CCC")
-      .style("stroke-width", ".5px")
-      .attr("data-zip", function(d) {return d.properties.zip; })
-      .attr("data-state", function(d) {return d.properties.state; })
-      .attr("data-name", function(d) {return d.properties.name; })
+      .style("stroke-width", ".3px")
       .attr("d", path);
+      // .attr("data-zip", function(d) {return d.properties.zip; })
+      // .attr("data-state", function(d) {return d.properties.state; })
+      // .attr("data-name", function(d) {return d.properties.name; })
     }
 
 })

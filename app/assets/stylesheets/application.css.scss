@@ -18,9 +18,13 @@
 .container {
 	margin: 60px auto 0 auto;
 }
-h1 span{
+h1, h2, h3, h4 {
+	margin: 0;
+	color: white;
+}
+h1 span, h2 span, h3 span, h4 span{
 	background-color: #C1F78F;
 }
 body {
-	color: white;
+	
 }

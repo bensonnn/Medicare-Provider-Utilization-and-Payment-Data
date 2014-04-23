@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140422230836) do
+ActiveRecord::Schema.define(version: 20140423211834) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20140422230836) do
     t.integer  "provider_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "short_zip"
   end
 
   add_index "locations", ["provider_id"], name: "index_locations_on_provider_id", using: :btree
@@ -58,5 +59,18 @@ ActiveRecord::Schema.define(version: 20140422230836) do
   end
 
   add_index "services", ["provider_id"], name: "index_services_on_provider_id", using: :btree
+
+  create_table "zips", force: true do |t|
+    t.integer  "zip"
+    t.string   "arcs"
+    t.float    "avg_1"
+    t.float    "avg_2"
+    t.float    "avg_3"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "full_zip"
+  end
+
+  add_index "zips", ["zip"], name: "index_zips_on_zip", using: :btree
 
 end
