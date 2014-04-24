@@ -1,6 +1,7 @@
 require 'csv'
-
-path = Rails.root.join('db', 'data.txt')
+require 'json'
+# require 'public/zips_us_topo.json'
+# path = Rails.root.join('db', 'data.txt')
 
 # ActiveRecord::Base.transaction do
 
@@ -38,8 +39,40 @@ path = Rails.root.join('db', 'data.txt')
 
 # end
 
-# Location.all.map{ |loc| loc.zip/10000 }.uniq.each{ |zip| Zip.create(zip: zip) }
-# Location.all.each{ |loc| loc.update(short_zip: loc.zip/10000) }
+# Normalize Zips
+
+# Location.all.map{ |loc| loc.zip.to_s[0..4].rjust(5,'0') }.uniq.each{ |zip| Zip.create(zip: zip) }
+# Location.all.each{ |loc| loc.update(short_zip: loc.zip.to_s[0..4].rjust(5,'0').to_i) }
+
+# Collect Arcs
+
+# path = Rails.root.join('public', 'zips_us_topo.json')
+# json = JSON.parse(File.read(path))
+# json["objects"]["zip_codes_for_the_usa"]["geometries"].each do |poly| 
+# 	zip = Zip.find_by(zip: poly["properties"]["zip"].to_i)
+# 	zip.update(arcs: poly["arcs"].to_s) unless zip.nil?
+# end
+
+# Get some averages
+
+Zip.all.each do |zip|
+	length = Location.find_by(short_zip: zip.zip).provider.services.length
+	avg = Location.find_by(short_zip: zip.zip).provider.services.map(&:stdev_med_allow_amt).inject(:+) / length
+	zip.update(avg_1: avg)
+	avg = Location.find_by(short_zip: zip.zip).provider.services.map(&:stdev_submit_chrg_amt).inject(:+) / length
+	zip.update(avg_2: avg)
+	avg = Location.find_by(short_zip: zip.zip).provider.services.map(&:stdev_med_payment_amt).inject(:+) / length
+	zip.update(avg_3: avg)
+end
+
+
+# # Bake some json
+
+# Zip.all.each do |zip|
+# 	p zip.zip
+# end
+
+	# {"type"=>"Polygon", "properties"=>{"name"=>"MT MEADOWS AREA", "zip"=>"00012", "state"=>"CA"}, "arcs"=>[[0, 1, 2]]}
 
 
 

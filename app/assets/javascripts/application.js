@@ -38,9 +38,8 @@ var width = 960,
       .selectAll("path")
       .data(topojson.feature(us, us.objects.zip_codes_for_the_usa).features)
       .enter().append("path")
-      .style("fill", "#C1F78F")
-      .style("stroke", "#CCC")
-      .style("stroke-width", ".3px")
+      .style("fill", "black")
+      .style("opacity", function() { return Math.random()})
       .attr("d", path);
       // .attr("data-zip", function(d) {return d.properties.zip; })
       // .attr("data-state", function(d) {return d.properties.state; })
