@@ -3,7 +3,7 @@
 This is project based on <a href="www.cms.gov/Research-Statistics-Data-and-Systems/Statistics-Trends-and-Reports/Medicare-Provider-Charge-Data/Physician-and-Other-Supplier.html">Medicare-Provider-Supplier Data</a> supplied by CMS.gov.
 
 ###What This Is
-I compiled all the Medicare Data for 14,000 unique zips, then filled the Zip areas on a US map with opacities corresponding to higher average standard deviations.    
+I compiled Medicare Data for 14,000 Zip codes, then filled the Zip Code areas on a US map with opacities corresponding to higher average standard deviations of different data points.    
 
 ###Challenges
 This was a large dataset from my expierence and really pushed my optimization techniques for Rails.  Though I wasn't able to use the whole file, I was used about a million lines of the data to speed up my workflow.  
