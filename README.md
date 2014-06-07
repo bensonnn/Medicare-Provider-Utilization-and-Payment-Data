@@ -1,7 +1,7 @@
 #README
 
 ###<a href="http://med-data.herokuapp.com">med-data.herokuapp.com</a><br />
-This is project based on <a href="www.cms.gov/Research-Statistics-Data-and-Systems/Statistics-Trends-and-Reports/Medicare-Provider-Charge-Data/Physician-and-Other-Supplier.html">Medicare-Provider-Supplier Data</a> supplied by CMS.gov.
+This is project based on <a href="http://www.cms.gov/Research-Statistics-Data-and-Systems/Statistics-Trends-and-Reports/Medicare-Provider-Charge-Data/Physician-and-Other-Supplier.html">Medicare-Provider-Supplier Data</a> supplied by CMS.gov.
 
 ###What This Is
 I compiled Medicare Data for 14,000 Zip codes, then filled the Zip Code areas on a US map with opacities corresponding to higher average standard deviations of different data points.    
